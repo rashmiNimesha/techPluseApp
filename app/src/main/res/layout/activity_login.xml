@@ -43,6 +43,7 @@
             android:hint="Password" />
 
         <Button
+            android:id="@+id/loginButton"
             style="@style/CustomButton"
             android:layout_marginTop="80dp"
             android:text="Login">
@@ -64,11 +65,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:background="@android:color/transparent"
-            android:src="@mipmap/ic_launcher"
-
-            />
-
-
+            android:src="@mipmap/ic_launcher" />
     </LinearLayout>
 
     <TextView
@@ -79,6 +76,4 @@
         android:textStyle="bold">
 
     </TextView>
-
-
 </LinearLayout>
