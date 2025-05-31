@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_academics"
+        android:checkable="true"
+        android:iconTint="@color/brand"
+        android:icon="@drawable/ballnav"
+        android:title="Academics"
+        />
+    <item
+        android:id="@+id/nav_sports"
+        android:checkable="true"
+        android:iconTint="@color/brand"
+        android:icon="@drawable/ballnav"
+        android:title="Sports" />
+
+    <item
+        android:id="@+id/nav_events"
+        android:checkable="true"
+        android:iconTint="@color/brand"
+        android:icon="@drawable/event_calendar_icon"
+        android:title="Events" />
+</menu>
