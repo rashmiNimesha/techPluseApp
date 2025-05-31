@@ -1,9 +1,11 @@
 package com.example.techpluseapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,6 +25,8 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+
         setContentView(R.layout.activity_dashboard);
 
         newsContainer = findViewById(R.id.newsContainer);
@@ -34,8 +38,6 @@ public class DashboardActivity extends AppCompatActivity {
         String currentDate = sdf.format(new Date());
         dateText.setText(currentDate);
 
-
-        // Default category to load initially (e.g., "sports")
         fetchNewsByCategory("academics");
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
@@ -67,10 +69,13 @@ public class DashboardActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot doc : task.getResult()) {
                             String title = doc.getString("title");
-                            String description = doc.getString("content"); // Assuming it's called "content"
+                            String description = doc.getString("content");
                             String imageUrl = doc.getString("imageUrl");
+                            String longDescription = doc.getString("longdescription");
 
-                            NewsItem news = new NewsItem(title, description, imageUrl);
+//                            NewsItem news = new NewsItem(title, description, imageUrl);
+                            NewsItem news = new NewsItem(title, description, imageUrl, longDescription);
+
                             addNewsCard(news);
                         }
 
@@ -89,6 +94,7 @@ public class DashboardActivity extends AppCompatActivity {
         TextView title = card.findViewById(R.id.newsTitle);
         TextView desc = card.findViewById(R.id.newsDescription);
         ImageView image = card.findViewById(R.id.newsImage);
+        TextView longDescription = card.findViewById(R.id.newsDescription);
         Button readBtn = card.findViewById(R.id.readBtn);
 
         title.setText(news.getTitle());
@@ -103,7 +109,11 @@ public class DashboardActivity extends AppCompatActivity {
         }
 
         readBtn.setOnClickListener(v -> {
-            Toast.makeText(this, "Clicked: " + news.getTitle(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(DashboardActivity.this, NewsActivity.class);
+            intent.putExtra("title", news.getTitle());
+            intent.putExtra("imageUrl", news.getImageUrl());
+            intent.putExtra("longdescription", news.getLongDescription());
+            startActivity(intent);
         });
 
         newsContainer.addView(card);

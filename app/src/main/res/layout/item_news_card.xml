@@ -27,8 +27,8 @@
         android:id="@+id/newsDescription"
         style="@style/CustomTextViewBlack"
         android:text=""
-        android:textSize="16sp"
-        android:layout_marginBottom="8dp" />
+        android:textSize="18sp"
+        android:layout_marginBottom="10dp" />
 
     <Button
         android:id="@+id/readBtn"

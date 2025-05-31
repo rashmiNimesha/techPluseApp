@@ -54,10 +54,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="520dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="32dp"
+            android:layout_margin="32dp"
             android:background="@drawable/rounded_layout_signup"
             android:gravity="center"
             android:orientation="vertical">
@@ -98,13 +95,10 @@
 
                 <TextView
                     android:id="@+id/termsText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    style="@style/CustomTextViewBlack"
                     android:layout_weight="1"
-                    android:fontFamily="@font/roboto_serif_medium"
-                    android:paddingLeft="8dp"
                     android:text="I agree to TechPulse’s Terms of Service and default Notification Preferences."
-                    android:textColor="#000000"
+                    android:textAlignment="textStart"
                     android:textSize="14sp" />
 
                 <CheckBox
@@ -122,10 +116,9 @@
 
             <TextView
                 android:id="@+id/LoginText"
-                style="@style/CustomTextViewWhite"
+                style="@style/CustomTextViewBlack"
                 android:layout_marginTop="5dp"
                 android:text="Already a member? Login here "
-                android:textColor="@color/black"
                 android:textSize="14dp"
                 android:textStyle="bold" />
         </LinearLayout>

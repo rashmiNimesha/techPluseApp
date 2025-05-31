@@ -3,6 +3,9 @@
     <style name="Base.Theme.TechPluseApplication" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimaryVariant">@android:color/white</item>
+
     </style>
 
     <style name="Theme.TechPluseApplication" parent="Base.Theme.TechPluseApplication" />
