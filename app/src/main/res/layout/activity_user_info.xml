@@ -80,6 +80,7 @@
         </TextView>
 
         <Button
+            android:id="@+id/editUserButton"
             style="@style/CustomButton"
             android:layout_width="170dp"
             android:layout_height="39dp"
@@ -89,6 +90,7 @@
             />
 
         <Button
+            android:id="@+id/logoutButton"
             style="@style/CustomButton"
             android:layout_width="170dp"
             android:layout_height="39dp"

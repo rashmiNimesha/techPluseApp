@@ -13,6 +13,9 @@
         android:theme="@style/Theme.TechPluseApplication"
         tools:targetApi="31">
         <activity
+            android:name=".EditUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserInfoActivity"
             android:exported="false" />
         <activity
