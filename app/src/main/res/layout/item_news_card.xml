@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_layout_signup"
+    android:layout_marginTop="30dp"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/newsTitle"
+        style="@style/CustomTextViewBlack"
+        android:text=""
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <ImageView
+        android:id="@+id/newsImage"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/newsDescription"
+        style="@style/CustomTextViewBlack"
+        android:text=""
+        android:textSize="18sp"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:id="@+id/readBtn"
+        style="@style/CustomButton"
+        android:layout_width="150dp"
+        android:text="Read" />
+</LinearLayout>

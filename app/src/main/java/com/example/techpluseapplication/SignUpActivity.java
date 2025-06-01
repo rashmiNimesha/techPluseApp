@@ -9,23 +9,19 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText email, username, password, confirmPassword;
     private Button signUpBtn;
     private CheckBox checkboxConsent;
-//    private FirebaseAuth mAuth;
-//    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore firestore;
 
 
 
@@ -35,8 +31,8 @@ public class SignUpActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_up);
 
-//        mAuth = FirebaseAuth.getInstance();
-//        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        mAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
         email = findViewById(R.id.email);
         username = findViewById(R.id.username);
@@ -70,27 +66,27 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-//        mAuth.createUserWithEmailAndPassword(emailInput, passwordInput)
-//                .addOnCompleteListener(task -> {
-//                    if (task.isSuccessful()) {
-//                        String userId = mAuth.getCurrentUser().getUid();
-//                        // Save additional user data
-//                        HashMap<String, String> userMap = new HashMap<>();
-//                        userMap.put("email", emailInput);
-//                        userMap.put("username", usernameInput);
-//
-//                        mDatabase.child(userId).setValue(userMap).addOnCompleteListener(task1 -> {
-//                            if (task1.isSuccessful()) {
-//                                Toast.makeText(SignUpActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
-//                                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-//                                finish();
-//                            } else {
-//                                Toast.makeText(SignUpActivity.this, "Database error", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//                    } else {
-//                        Toast.makeText(SignUpActivity.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                });
+        mAuth.createUserWithEmailAndPassword(emailInput, passwordInput)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        String userId = mAuth.getCurrentUser().getUid();
+                        Map<String, Object> userMap = new HashMap<>();
+                        userMap.put("email", emailInput);
+                        userMap.put("username", usernameInput);
+                        userMap.put("password", passwordInput);
+
+                        firestore.collection("users").document(userId).set(userMap).addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                Toast.makeText(SignUpActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                                finish();
+                            } else {
+                                Toast.makeText(SignUpActivity.this, "Database error", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        Toast.makeText(SignUpActivity.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Reusable style for EditText fields -->
     <style name="CustomEditText">
-        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">25dp</item>
         <item name="android:background">@drawable/edittext_border</item>
         <item name="android:padding">16dp</item>
+        <item name="android:fontFamily">@font/roboto_serif_medium</item>
         <item name="android:inputType">textPersonName</item>
     </style>
 
-    <!-- Reusable style for TextViews -->
     <style name="CustomTextViewWhite">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">32dp</item>
-        <item name="android:layout_marginRight">32dp</item>
         <item name="android:fontFamily">@font/roboto_serif_medium</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
@@ -26,19 +22,25 @@
     <style name="CustomTextViewBlack">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">32dp</item>
-        <item name="android:layout_marginRight">32dp</item>
         <item name="android:fontFamily">@font/roboto_serif_medium</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="CustomTextViewBrandColor">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/roboto_serif_medium</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
+        <item name="android:textColor">@color/brand</item>
+    </style>
+
     <style name="CustomButton">
         <item name="android:layout_width">300dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">32dp</item>
-        <item name="android:layout_marginRight">32dp</item>
         <item name="android:fontFamily">@font/roboto_serif_medium</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>

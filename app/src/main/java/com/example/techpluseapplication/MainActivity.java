@@ -6,9 +6,6 @@ import android.os.Handler;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,8 +17,11 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+
+
         new Handler().postDelayed(() -> {
-                    Intent intent = new Intent(this, SignUpActivity.class);
+            //this should be signup activity honde
+                    Intent intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }, time
