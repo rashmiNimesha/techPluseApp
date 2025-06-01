@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowCompat;
 
@@ -21,16 +22,19 @@ public class DashboardActivity extends AppCompatActivity {
     LinearLayout newsContainer;
     FirebaseFirestore db;
     BottomNavigationView bottomNav;
+    ImageButton burgerMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-
         setContentView(R.layout.activity_dashboard);
 
         newsContainer = findViewById(R.id.newsContainer);
         bottomNav = findViewById(R.id.bottomNav);
+        burgerMenu = findViewById(R.id.burgerMenu);
+        View blurOverlay = findViewById(R.id.blurOverlay);
+
         db = FirebaseFirestore.getInstance();
 
         TextView dateText = findViewById(R.id.dateText);
@@ -57,10 +61,51 @@ public class DashboardActivity extends AppCompatActivity {
 
             return false;
         });
+
+
+        burgerMenu.setOnClickListener(v -> {
+            View popupView = getLayoutInflater().inflate(R.layout.activity_popup_menu, null);
+
+            final PopupWindow popupWindow = new PopupWindow(popupView,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    true);
+
+            popupWindow.setElevation(20);
+            popupWindow.setOutsideTouchable(true); // dismiss when touched outside
+            popupWindow.setFocusable(true);
+
+            blurOverlay.setVisibility(View.VISIBLE);
+
+            popupWindow.showAsDropDown(v, -100, 20);
+
+            popupWindow.setOnDismissListener(() -> blurOverlay.setVisibility(View.GONE));
+
+            TextView devInfo = popupView.findViewById(R.id.devInfo);
+            TextView userSettings = popupView.findViewById(R.id.userSettings);
+            TextView logout = popupView.findViewById(R.id.logout);
+
+            devInfo.setOnClickListener(view -> {
+                popupWindow.dismiss();
+                startActivity(new Intent(this, DevInfoActivity.class));
+            });
+
+            userSettings.setOnClickListener(view -> {
+                popupWindow.dismiss();
+                startActivity(new Intent(this, UserInfoActivity.class));
+            });
+
+            logout.setOnClickListener(view -> {
+                popupWindow.dismiss();
+                startActivity(new Intent(this, UserInfoActivity.class));
+            });
+        });
+
+
     }
 
     private void fetchNewsByCategory(String category) {
-        newsContainer.removeAllViews();  // Clear previous news
+        newsContainer.removeAllViews();
 
         db.collection("news")
                 .whereEqualTo("category", category)
@@ -73,7 +118,6 @@ public class DashboardActivity extends AppCompatActivity {
                             String imageUrl = doc.getString("imageUrl");
                             String longDescription = doc.getString("longdescription");
 
-//                            NewsItem news = new NewsItem(title, description, imageUrl);
                             NewsItem news = new NewsItem(title, description, imageUrl, longDescription);
 
                             addNewsCard(news);
