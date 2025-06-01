@@ -94,7 +94,6 @@ public class DashboardActivity extends AppCompatActivity {
         TextView title = card.findViewById(R.id.newsTitle);
         TextView desc = card.findViewById(R.id.newsDescription);
         ImageView image = card.findViewById(R.id.newsImage);
-        TextView longDescription = card.findViewById(R.id.newsDescription);
         Button readBtn = card.findViewById(R.id.readBtn);
 
         title.setText(news.getTitle());
@@ -114,6 +113,7 @@ public class DashboardActivity extends AppCompatActivity {
             intent.putExtra("imageUrl", news.getImageUrl());
             intent.putExtra("longdescription", news.getLongDescription());
             startActivity(intent);
+            finish();
         });
 
         newsContainer.addView(card);
