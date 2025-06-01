@@ -33,9 +33,9 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/email"
             style="@style/CustomEditText"
-            android:hint="Username" />
+            android:hint="Email" />
 
 
         <EditText

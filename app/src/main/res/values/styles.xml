@@ -6,6 +6,7 @@
         <item name="android:layout_marginTop">25dp</item>
         <item name="android:background">@drawable/edittext_border</item>
         <item name="android:padding">16dp</item>
+        <item name="android:fontFamily">@font/roboto_serif_medium</item>
         <item name="android:inputType">textPersonName</item>
     </style>
 
@@ -40,8 +41,6 @@
     <style name="CustomButton">
         <item name="android:layout_width">300dp</item>
         <item name="android:layout_height">wrap_content</item>
-<!--        <item name="android:layout_marginLeft">32dp</item>-->
-<!--        <item name="android:layout_marginRight">32dp</item>-->
         <item name="android:fontFamily">@font/roboto_serif_medium</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>

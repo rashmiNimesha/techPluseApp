@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".EditUserActivity"
-    >
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    tools:context=".EditUserActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +19,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_bottom"
             android:minHeight="280dp"
-            android:padding="24dp">
+            android:paddingHorizontal="24dp"
+            android:paddingTop="48dp"
+            android:paddingBottom="24dp">
 
             <ImageButton
                 android:id="@+id/backButton"
@@ -44,9 +47,7 @@
                 app:layout_constraintBottom_toTopOf="@id/username"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/backButton"
-                app:layout_constraintTop_toTopOf="parent"
-
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/username"
@@ -71,9 +72,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/username" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!-- Settings Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,10 +119,8 @@
                     style="@style/CustomEditText"
                     android:layout_marginTop="16dp"
                     android:hint="Current Password" />
-
             </LinearLayout>
 
-            <!-- Buttons -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -147,8 +146,6 @@
                     android:layout_weight="1"
                     android:text="Update" />
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

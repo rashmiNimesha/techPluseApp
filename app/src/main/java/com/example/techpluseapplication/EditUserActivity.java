@@ -1,8 +1,10 @@
 package com.example.techpluseapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +21,8 @@ import java.util.Map;
 public class EditUserActivity extends AppCompatActivity {
 
     private EditText emailEditText, usernameEditText, passwordEditText, currentPasswordEditText;
-    private Button updateButton;
+    private Button updateButton, cancelButton;
+    private ImageButton backButton;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private FirebaseFirestore firestore;
@@ -27,6 +30,7 @@ public class EditUserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_edit_user);
 
         emailEditText = findViewById(R.id.emailtext);
@@ -34,12 +38,27 @@ public class EditUserActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordtext);
         currentPasswordEditText = findViewById(R.id.currentPassword);
         updateButton = findViewById(R.id.updateButton);
-
+        cancelButton = findViewById(R.id.cancelButton);
+        backButton = findViewById(R.id.backButton);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
 
         updateButton.setOnClickListener(v -> updateUser());
+
+        cancelButton.setOnClickListener(v -> {
+            emailEditText.setText("");
+            usernameEditText.setText("");
+            passwordEditText.setText("");
+            currentPasswordEditText.setText("");
+            Toast.makeText(this, "Fields cleared.", Toast.LENGTH_SHORT).show();
+        });
+
+        backButton.setOnClickListener(v -> {
+            Intent i = new Intent(this, UserInfoActivity.class);
+            startActivity(i);
+            finish();
+        });
     }
 
     private void updateUser() {

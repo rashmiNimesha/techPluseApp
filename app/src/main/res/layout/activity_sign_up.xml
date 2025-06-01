@@ -37,7 +37,7 @@
             <TextView
                 android:id="@+id/textView2"
                 style="@style/CustomTextViewWhite"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:text="TechPluse"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -45,6 +45,8 @@
             <TextView
                 android:id="@+id/textView3"
                 style="@style/CustomTextViewWhite"
+               android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
                 android:text="Your gateway to the latest updates in academics, sports, and faculty events. Stay informed. Stay connected."
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -57,7 +59,9 @@
             android:layout_margin="32dp"
             android:background="@drawable/rounded_layout_signup"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <EditText
                 android:id="@+id/email"
@@ -87,9 +91,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
