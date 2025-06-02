@@ -84,7 +84,6 @@ public class EditUserActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 Map<String, Object> updates = new HashMap<>();
 
-                // Email update
                 if (!newEmail.isEmpty() && !newEmail.equals(currentEmail)) {
                     currentUser.updateEmail(newEmail).addOnSuccessListener(unused -> {
                         updates.put("email", newEmail);
@@ -94,7 +93,6 @@ public class EditUserActivity extends AppCompatActivity {
                     updates.put("email", currentEmail); // Keep current if not changed
                 }
 
-                // Password update
                 if (!newPassword.isEmpty()) {
                     currentUser.updatePassword(newPassword).addOnSuccessListener(unused -> {
                         updates.put("password", newPassword);
@@ -102,7 +100,6 @@ public class EditUserActivity extends AppCompatActivity {
                     }).addOnFailureListener(e -> Toast.makeText(this, "Password update failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
                 }
 
-                // Username update
                 if (!newUsername.isEmpty()) {
                     updates.put("username", newUsername);
                     updateFirestore(updates);
