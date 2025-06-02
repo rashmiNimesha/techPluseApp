@@ -55,13 +55,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="520dp"
+            android:layout_height="530dp"
             android:layout_margin="32dp"
             android:background="@drawable/rounded_layout_signup"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
 
             <EditText
                 android:id="@+id/email"
@@ -85,15 +85,13 @@
                 android:id="@+id/confirmPassword"
                 style="@style/CustomEditText"
                 android:hint="Confirm Password"
-
+                android:inputType="textPassword"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -124,6 +122,7 @@
                 android:layout_marginTop="5dp"
                 android:text="Already a member? Login here "
                 android:textSize="14dp"
+                android:layout_marginBottom="16dp"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
