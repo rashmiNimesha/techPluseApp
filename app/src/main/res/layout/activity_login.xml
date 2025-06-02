@@ -41,7 +41,8 @@
         <EditText
             android:id="@+id/password"
             style="@style/CustomEditText"
-            android:hint="Password" />
+            android:hint="Password"
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/loginButton"
@@ -66,7 +67,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:background="@android:color/transparent"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/googlesvg" />
     </LinearLayout>
 
     <TextView

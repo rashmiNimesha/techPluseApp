@@ -85,7 +85,7 @@
                 android:id="@+id/confirmPassword"
                 style="@style/CustomEditText"
                 android:hint="Confirm Password"
-
+                android:inputType="textPassword"
                 />
 
             <LinearLayout

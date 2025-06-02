@@ -157,7 +157,6 @@ public class DashboardActivity extends AppCompatActivity {
             intent.putExtra("imageUrl", news.getImageUrl());
             intent.putExtra("longdescription", news.getLongDescription());
             startActivity(intent);
-            finish();
         });
 
         newsContainer.addView(card);
