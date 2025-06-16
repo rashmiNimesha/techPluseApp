@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import java.util.Map;
 public class EditUserActivity extends AppCompatActivity {
 
     private EditText emailEditText, usernameEditText, passwordEditText, currentPasswordEditText;
+    TextView usernameText, emailText;
     private Button updateButton, cancelButton;
     private ImageButton backButton;
     private FirebaseAuth mAuth;
@@ -40,6 +42,9 @@ public class EditUserActivity extends AppCompatActivity {
         updateButton = findViewById(R.id.updateButton);
         cancelButton = findViewById(R.id.cancelButton);
         backButton = findViewById(R.id.backButton);
+        usernameText = findViewById(R.id.username);
+        emailText = findViewById(R.id.email);
+
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
@@ -59,7 +64,27 @@ public class EditUserActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         });
+
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            firestore.collection("users").document(uid).get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String email = documentSnapshot.getString("email");
+                            String username = documentSnapshot.getString("username");
+
+                            emailText.setText("Email : " + email);
+                            usernameText.setText("Username : " + username);
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        usernameText.setText("Username : Error");
+                        emailText.setText("Email : Error");
+                    });
+        }
     }
+
 
     private void updateUser() {
         if (currentUser == null) {

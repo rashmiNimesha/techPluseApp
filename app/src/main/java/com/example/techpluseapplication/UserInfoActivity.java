@@ -4,16 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class UserInfoActivity extends AppCompatActivity {
 
     ImageButton back;
     Button editUser, logout;
+    TextView usernameText, emailText;
+    FirebaseAuth mAuth;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +31,12 @@ public class UserInfoActivity extends AppCompatActivity {
         back = findViewById(R.id.backButton);
         editUser = findViewById(R.id.editUserButton);
         logout = findViewById(R.id.logoutButton);
+        usernameText = findViewById(R.id.username);
+        emailText = findViewById(R.id.email);
+
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
         back.setOnClickListener(v -> {
             Intent i = new Intent(this, DashboardActivity.class);
@@ -38,7 +52,24 @@ public class UserInfoActivity extends AppCompatActivity {
 
         logout.setOnClickListener(v -> showLogoutConfirmationDialog());
 
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
 
+            db.collection("users").document(uid).get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String email = documentSnapshot.getString("email");
+                            String username = documentSnapshot.getString("username");
+
+                            emailText.setText("Email : " + email);
+                            usernameText.setText("Username : " + username);
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        usernameText.setText("Username : Error");
+                        emailText.setText("Email : Error");
+                    });
+        }
     }
 
     private void showLogoutConfirmationDialog() {
