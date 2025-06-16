@@ -30,27 +30,6 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(v -> loginUser());
     }
 
-//    private void loginUser() {
-//        String email = emailInput.getText().toString().trim();
-//        String password = passwordInput.getText().toString().trim();
-//
-//        if (email.isEmpty() || password.isEmpty()) {
-//            Toast.makeText(this, "Enter both email and password", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//
-//        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(task -> {
-//                    if (task.isSuccessful()) {
-//                        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
-//                        startActivity(new Intent(this, UserInfoActivity.class));
-//                        finish();
-//                    } else {
-//                        Toast.makeText(this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//    }
-
 
     private void loginUser() {
         String email = emailInput.getText().toString().trim();
@@ -64,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        // ✅ Save UID to SharedPreferences
                         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                         getSharedPreferences("UserPrefs", MODE_PRIVATE)
                                 .edit()
@@ -72,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                                 .apply();
 
                         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(this, UserInfoActivity.class));
+                        startActivity(new Intent(this, DashboardActivity.class));
                         finish();
                     } else {
                         Toast.makeText(this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
