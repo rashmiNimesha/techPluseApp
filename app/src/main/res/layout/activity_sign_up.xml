@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".SignUpActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:background="@drawable/rounded_bottom"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="32dp"
+                app:srcCompat="@drawable/copy_removebg_preview" />
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/CustomTextViewWhite"
+                android:text="Let’s Join With"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/CustomTextViewWhite"
+                android:layout_marginBottom="10dp"
+                android:text="TechPluse"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/CustomTextViewWhite"
+               android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:text="Your gateway to the latest updates in academics, sports, and faculty events. Stay informed. Stay connected."
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="530dp"
+            android:layout_margin="32dp"
+            android:background="@drawable/rounded_layout_signup"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <EditText
+                android:id="@+id/email"
+                style="@style/CustomEditText"
+                android:hint="Email" />
+
+
+            <EditText
+                android:id="@+id/username"
+                style="@style/CustomEditText"
+                android:hint="Username"
+
+                />
+
+            <EditText
+                android:id="@+id/password"
+                style="@style/CustomEditText"
+                android:hint="Password" />
+
+            <EditText
+                android:id="@+id/confirmPassword"
+                style="@style/CustomEditText"
+                android:hint="Confirm Password"
+                android:inputType="textPassword"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/termsText"
+                    style="@style/CustomTextViewBlack"
+                    android:layout_weight="1"
+                    android:text="I agree to TechPulse’s Terms of Service and default Notification Preferences."
+                    android:textAlignment="textStart"
+                    android:textSize="14sp" />
+
+                <CheckBox
+                    android:id="@+id/checkboxConsent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#17163E" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/signupBtn"
+                style="@style/CustomButton"
+                android:layout_marginTop="20dp"
+                android:text="Sign Up"></Button>
+
+            <TextView
+                android:id="@+id/LoginText"
+                style="@style/CustomTextViewBlack"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="16dp"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="Already a member? Login here"
+                android:autoLink="none"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
