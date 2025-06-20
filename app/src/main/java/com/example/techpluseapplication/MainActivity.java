@@ -20,8 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         new Handler().postDelayed(() -> {
-            //this should be signup activity honde
-                    Intent intent = new Intent(this, LoginActivity.class);
+                    Intent intent = new Intent(this, SignUpActivity.class);
                     startActivity(intent);
                     finish();
                 }, time

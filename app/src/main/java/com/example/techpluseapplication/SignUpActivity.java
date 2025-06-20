@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -40,6 +41,13 @@ public class SignUpActivity extends AppCompatActivity {
         confirmPassword = findViewById(R.id.confirmPassword);
         signUpBtn = findViewById(R.id.signupBtn);
         checkboxConsent = findViewById(R.id.checkboxConsent);
+        TextView loginText = findViewById(R.id.LoginText);
+
+        loginText.setOnClickListener(v -> {
+            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
         signUpBtn.setOnClickListener(v -> registerUser());
 
