@@ -13,13 +13,18 @@
         android:text=""
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp" />
 
     <ImageView
         android:id="@+id/newsImage"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:scaleType="centerCrop"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="8dp" />
 
     <TextView
@@ -28,10 +33,14 @@
         android:text=""
         android:textAlignment="textStart"
         android:textSize="16sp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="12dp" />
 
     <Button
         android:id="@+id/readBtn"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         style="@style/CustomButton"
         android:layout_width="150dp"
         android:text="Read" />

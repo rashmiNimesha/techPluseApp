@@ -120,10 +120,15 @@
                 android:id="@+id/LoginText"
                 style="@style/CustomTextViewBlack"
                 android:layout_marginTop="5dp"
-                android:text="Already a member? Login here "
-                android:textSize="14dp"
                 android:layout_marginBottom="16dp"
-                android:textStyle="bold" />
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="Already a member? Login here"
+                android:autoLink="none"
+                android:clickable="true"
+                android:focusable="true" />
+
         </LinearLayout>
     </LinearLayout>
 

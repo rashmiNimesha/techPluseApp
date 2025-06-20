@@ -5,7 +5,6 @@
     android:id="@+id/mainScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:fitsSystemWindows="true"
     tools:context=".EditUserActivity">
 
@@ -18,10 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_bottom"
-            android:minHeight="280dp"
-            android:paddingHorizontal="24dp"
-            android:paddingTop="48dp"
-            android:paddingBottom="24dp">
+            android:minHeight="250dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
 
             <ImageButton
                 android:id="@+id/backButton"
@@ -93,7 +91,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="22dp"
                 android:orientation="vertical">
 
                 <EditText
@@ -124,6 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
