@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class UserInfoActivity extends AppCompatActivity {
 
     ImageButton back;
-    Button editUser, logout;
+    Button editUser, logout , deleteButton;;
     TextView usernameText, emailText;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
@@ -33,6 +33,8 @@ public class UserInfoActivity extends AppCompatActivity {
         logout = findViewById(R.id.logoutButton);
         usernameText = findViewById(R.id.username);
         emailText = findViewById(R.id.email);
+        deleteButton = findViewById(R.id.deleteButton);
+
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -70,6 +72,26 @@ public class UserInfoActivity extends AppCompatActivity {
                         emailText.setText("Email : Error");
                     });
         }
+
+
+        deleteButton.setOnClickListener(v -> showDeleteConfirmationDialog());
+
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+            db.collection("users").document(uid).get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String email = documentSnapshot.getString("email");
+                            String username = documentSnapshot.getString("username");
+                            emailText.setText("Email : " + email);
+                            usernameText.setText("Username : " + username);
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        usernameText.setText("Username : Error");
+                        emailText.setText("Email : Error");
+                    });
+        }
     }
 
     private void showLogoutConfirmationDialog() {
@@ -98,5 +120,58 @@ public class UserInfoActivity extends AppCompatActivity {
 
         alertDialog.show();
     }
+
+    private void showDeleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(UserInfoActivity.this);
+        builder.setTitle("Delete Account?");
+        builder.setMessage("This will permanently delete your account and you won't be able to log in again using this email.");
+        builder.setCancelable(true);
+
+        builder.setPositiveButton("Delete", (dialog, which) -> deleteUserAccount());
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.setOnShowListener(dialog -> {
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(android.R.color.black));
+        });
+
+        alertDialog.show();
+    }
+
+    private void deleteUserAccount() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            db.collection("users").document(uid).delete()
+                    .addOnSuccessListener(aVoid -> {
+                        currentUser.delete()
+                                .addOnSuccessListener(aVoid1 -> {
+                                    Intent intent = new Intent(UserInfoActivity.this, LoginActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    finish();
+                                })
+                                .addOnFailureListener(e -> {
+                                    showErrorDialog("Account deletion failed. Please re-login and try again.");
+                                });
+                    })
+                    .addOnFailureListener(e -> {
+                        showErrorDialog("Error deleting user data. Try again.");
+                    });
+        }
+    }
+
+    private void showErrorDialog(String message) {
+        new AlertDialog.Builder(UserInfoActivity.this)
+                .setTitle("Error")
+                .setMessage(message)
+                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
 
 }
